@@ -1,0 +1,35 @@
+.task-container {
+  margin: 0.25rem 0;
+  word-break: break-all;
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  background-color: whitesmoke;
+  /* border: 1px solid red; */
+  border-radius: 5px;
+}
+.task-container:hover{
+    background-color: beige;
+}
+.task-left {
+  max-width: 65%;
+  padding: 0.5rem 0.5rem;
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+}
+.task-left > input {
+  cursor: pointer;
+  margin: 0rem 0.3rem;
+  transform: scale(1.4);
+}
+.task-right {
+  /* padding: 0.5rem; */
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+}
+.task-right > button {
+  margin: 0.2rem;
+  padding: 0.5rem;
+}

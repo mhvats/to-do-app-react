@@ -1,0 +1,11 @@
+.filter-container {
+  margin: 0.5rem 0;
+  width: 95%;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.filter-container > button {
+  padding: 0.5rem;
+}

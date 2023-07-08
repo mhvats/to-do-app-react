@@ -1,0 +1,26 @@
+.addtodo-container {
+  margin: 0.5rem 0rem;
+  border-radius: 5px;
+  background-color: rgb(219, 219, 219);
+  /* padding: 0rem 1rem; */
+  padding-left: 1rem;
+  /* border: 1px solid red; */
+}
+.addtodo-container > input {
+  background-color: rgb(219, 219, 219);
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  /* width: 100%; */
+  /* padding: 1rem; */
+  border: none;
+  outline: none;
+}
+.addtodo-container > button {
+  font-size: 1rem;
+  background-color: blue;
+  color: white;
+  outline: none;
+  border-radius: 5px;
+  padding: 0.5rem 2rem;
+  border: none;
+}
