@@ -1,15 +1,13 @@
 import "./AddToDo.css";
-export const AddToDo = ({ task, handleSetTask, setTask }) => {
+export const AddToDo = ({ addInputValue, setAddInputValue, onAdd }) => {
   return (
     <div className="addtodo-container">
       <input
         placeholder="Add your todo"
-        value={task}
-        onChange={(e) => {
-          setTask(e.target.value);
-        }}
+        value={addInputValue}
+        onChange={(e) => setAddInputValue(e.target.value)}
       />
-      <button onClick={handleSetTask}>Add</button>
+      <button onClick={onAdd}>Add</button>
     </div>
   );
 };
