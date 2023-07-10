@@ -6,6 +6,10 @@
   justify-content: space-between;
   align-items: center;
 }
-.filter-container > button {
+.filter > button {
   padding: 0.5rem;
+}
+
+.filter-options{
+  border: 1px solid black;
 }

@@ -1,6 +1,6 @@
-// import { Data } from "../api/Data";
 import "./Task.css";
-export const Task = ({ taskItem }) => {
+export const Task = ({ taskItem, onDelete }) => {
+  // console.log(index);
   return (
     <div className="task-container">
       <div className="task-left">
@@ -9,7 +9,7 @@ export const Task = ({ taskItem }) => {
       </div>
       <div className="task-right">
         <button>Edit</button>
-        <button>Delete</button>
+        <button onClick={() => onDelete(taskItem)}>Delete</button>
       </div>
     </div>
   );
