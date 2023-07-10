@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Task } from "./components/Task";
 import "./App.css";
 import "./components/AddToDo.css";
 import "./components/Filter.css";
@@ -7,7 +8,7 @@ import "./components/TaskModifier.css";
 export const App = () => {
   const [task, setTask] = useState([]);
   const [addInputValue, setAddInputValue] = useState("");
-  const [completedCheckBox, setCompletedCheckBox] = useState(false);
+  const [completedCheckBox, setCompletedCheckBox] = useState(true);
   const [filter, setFilter] = useState(false);
   // STYLING
   const hanldeAddTask = (e) => {
@@ -28,43 +29,26 @@ export const App = () => {
       })
     );
   };
-  const handleCheckBoxClick = (index, e) => {
+  const handleCheckBoxClick = (e) => {
     e.stopPropagation();
     setCompletedCheckBox((prevState) => !prevState);
-    console.log(completedCheckBox);
   };
 
   const handleFilterDropDown = () => {
-    // alert(`filter triggered`);
     setFilter(true);
   };
   const handleOffFilterDropdown = () => {
-    setFilter(prevState => !prevState);
+    setFilter((prevState) => !prevState);
   };
   const renderTask = task.map((item, index) => {
     return (
-      <div key={index}>
-        <div className="task-container">
-          <div className="task-left">
-            <input
-              type="checkbox"
-              checked={completedCheckBox}
-              onClick={(e) => handleCheckBoxClick(index, e)}
-            />
-            <h3
-              style={{
-                textDecoration: completedCheckBox ? "line-through" : "none",
-              }}
-            >
-              {item}
-            </h3>
-          </div>
-          <div className="task-right">
-            <button>Edit</button>
-            <button onClick={(e) => handleDelete(index, e)}>Delete</button>
-          </div>
-        </div>
-      </div>
+      <Task
+        key={index}
+        taskItem={item}
+        onDelete={handleDelete}
+        onCheckBox={handleCheckBoxClick}
+        checkBox={completedCheckBox}
+      />
     );
   });
 
