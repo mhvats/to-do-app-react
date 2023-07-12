@@ -1,14 +1,24 @@
+import { useState } from "react";
 import "./Task.css";
-export const Task = ({ taskItem, onDelete, onCheckBox, checkBox }) => {
+export const Task = ({ taskItem, onDelete }) => {
+  const [completedCheckBox, setCompletedCheckBox] = useState(false);
+
+  const handleCheckBoxClick = (e) => {
+    e.stopPropagation();
+    setCompletedCheckBox((prevState) => !prevState);
+  };
+
   return (
     <div className="task-container">
       <div className="task-left">
         <input
           type="checkbox"
-          checked={checkBox}
-          onClick={(e) => onCheckBox(e)}
+          checked={completedCheckBox}
+          onClick={handleCheckBoxClick}
         />
-        <h3 style={{ color: checkBox ? "red" : "black" }}>{taskItem}</h3>
+        <h3 style={{ color: completedCheckBox ? "green" : "red" }}>
+          {taskItem}
+        </h3>
       </div>
       <div className="task-right">
         <button>Edit</button>
