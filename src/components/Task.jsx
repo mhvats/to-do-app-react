@@ -1,6 +1,13 @@
 import { useState } from "react";
 import "./Task.css";
-export const Task = ({ taskItem, setTask, index }) => {
+export const Task = ({
+  taskItem,
+  setTask,
+  index,
+  setAddInputValue,
+  addInputValue,
+  hanldeAddTask,
+}) => {
   const [completedCheckBox, setCompletedCheckBox] = useState(false);
 
   const handleCheckBoxClick = (e) => {
@@ -12,7 +19,12 @@ export const Task = ({ taskItem, setTask, index }) => {
     console.log(index);
     setTask((prevState) => prevState.filter((task, i) => i !== index));
   };
-
+  const handleTaskEdit = (e) => {
+    console.log(`edit button triggred for ${index} index`);
+    handleDelete(e);
+    setAddInputValue(taskItem);
+    hanldeAddTask();
+  };
   return (
     <div className="task-container">
       <div className="task-left">
@@ -26,7 +38,7 @@ export const Task = ({ taskItem, setTask, index }) => {
         </h3>
       </div>
       <div className="task-right">
-        <button>Edit</button>
+        <button onClick={handleTaskEdit}>Edit</button>
         <button onClick={handleDelete}>Delete</button>
       </div>
     </div>

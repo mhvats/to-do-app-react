@@ -6,48 +6,40 @@ import "./components/Filter.css";
 import "./components/Task.css";
 import "./components/TaskModifier.css";
 export const App = () => {
+  // STATE VARIABLES
+
   const [task, setTask] = useState([]);
   const [addInputValue, setAddInputValue] = useState("");
-  const [completedCheckBox, setCompletedCheckBox] = useState(true);
   const [filter, setFilter] = useState(false);
-  // STYLING
+  const [checkCompleted, setCheckCompleted] = useState(false);
+  // HANDLER FUNCTIONS
+
   const hanldeAddTask = (e) => {
-    e.stopPropagation();
+    // e.stopPropagation();
+    e.preventDefault();
     if (addInputValue !== "") {
       setTask((prevState) => [...prevState, addInputValue]);
+      console.log(addInputValue);
       setAddInputValue("");
     } else {
       alert("enter task!");
     }
   };
-  const handleDelete = (taskId, e) => {
-    e.stopPropagation();
-    setTask((prevTasks) =>
-      prevTasks.filter((task, index) => {
-        index !== taskId;
-        console.log(`${task} task has been deleted`);
-      })
-    );
-  };
-  const handleCheckBoxClick = (e) => {
-    e.stopPropagation();
-    setCompletedCheckBox((prevState) => !prevState);
-  };
-
   const handleFilterDropDown = () => {
-    setFilter(true);
-  };
-  const handleOffFilterDropdown = () => {
     setFilter((prevState) => !prevState);
   };
+  // MAP FUNCTION
+
   const renderTask = task.map((item, index) => {
     return (
       <Task
         key={index}
         taskItem={item}
-        onDelete={handleDelete}
-        onCheckBox={handleCheckBoxClick}
-        checkBox={completedCheckBox}
+        setTask={setTask}
+        index={index}
+        addInputValue={addInputValue}
+        setAddInputValue={setAddInputValue}
+        hanldeAddTask={hanldeAddTask}
       />
     );
   });
@@ -66,14 +58,16 @@ export const App = () => {
         }}
       >
         <div className="addtodo-container">
-          <input
-            placeholder="Add your todo"
-            value={addInputValue}
-            onChange={(e) => {
-              setAddInputValue(e.target.value);
-            }}
-          />
-          <button onClick={hanldeAddTask}>Add</button>
+          <form>
+            <input
+              placeholder="Add your todo"
+              value={addInputValue}
+              onChange={(e) => {
+                setAddInputValue(e.target.value);
+              }}
+            />
+            <button onClick={hanldeAddTask}>Add</button>
+          </form>
         </div>
         <div className="taskmodifier-container">
           <button id="1">Complete All Task</button>
@@ -82,12 +76,7 @@ export const App = () => {
         <div className="task-container-main">{renderTask}</div>
         <div className="filter-container">
           <div className="filter">
-            <button
-              onMouseEnter={handleFilterDropDown}
-              onClick={handleOffFilterDropdown}
-            >
-              Filter
-            </button>
+            <button onMouseEnter={handleFilterDropDown}>Filter</button>
             {filter && (
               <div>
                 <p className="filter-options">completed task</p>
@@ -95,7 +84,7 @@ export const App = () => {
               </div>
             )}
           </div>
-          <h3>Completed: 1</h3>
+          <h3>Completed: 0</h3>
           <h4>Total Tasks: {totalLength}</h4>
         </div>
       </div>
