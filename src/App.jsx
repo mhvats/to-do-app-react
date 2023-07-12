@@ -28,6 +28,7 @@ export const App = () => {
   const handleFilterDropDown = () => {
     setFilter((prevState) => !prevState);
   };
+
   // MAP FUNCTION
 
   const renderTask = task.map((item, index) => {
@@ -69,14 +70,16 @@ export const App = () => {
             <button onClick={hanldeAddTask}>Add</button>
           </form>
         </div>
-        <div className="taskmodifier-container">
-          <button id="1">Complete All Task</button>
+        {/* <div className="taskmodifier-container">
+          <button id="1" onClick={handleCompleteAllTask}>
+            Complete All Task
+          </button>
           <button id="2">Delete Completed Tasks</button>
-        </div>
+        </div> */}
         <div className="task-container-main">{renderTask}</div>
         <div className="filter-container">
           <div className="filter">
-            <button onMouseEnter={handleFilterDropDown}>Filter</button>
+            {/* <button onMouseEnter={handleFilterDropDown}>Filter</button> */}
             {filter && (
               <div>
                 <p className="filter-options">completed task</p>
@@ -84,7 +87,7 @@ export const App = () => {
               </div>
             )}
           </div>
-          <h3>Completed: 0</h3>
+          {/* <h3>Completed: 0</h3> */}
           <h4>Total Tasks: {totalLength}</h4>
         </div>
       </div>
